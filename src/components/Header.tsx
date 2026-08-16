@@ -1,4 +1,4 @@
-import Resume from "/Michael Adu - CV 2025.pdf";
+import Resume from "/michael-adu-embedded-software-engineer.pdf";
 
 import "./Header.scss";
 
