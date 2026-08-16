@@ -17,7 +17,7 @@
 
 ArctisSonar GUI is a small application made for Linux (PopOS/Bazzite to be exact) to emulate the best part of SteelSeries GG, the Sonar chatmix with a GUI. 
 
-![](/projects/arctisSonarGUI/homePage.png)
+![](/projects/arctisSonarGUI/images/homePage.png)
 
 # The essay you would probably skip (I would too)
 
@@ -47,7 +47,7 @@ The application should be fairly straightforward to use. The home screen shows t
 
 Since the application uses headset control as an API, it should work with other chatmix supported headsets.
 
-![](/projects/arctisSonarGUI/settingsPage.png)
+![](/projects/arctisSonarGUI/images/settingsPage.png)
 
 The `Enable Arctis GUI` toggle should remove the created virtual audio sinks and stop listening to headsetControl.
 
