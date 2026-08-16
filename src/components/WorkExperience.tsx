@@ -5,6 +5,7 @@ import {
 } from "@mui/material";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from 'rehype-raw';
+import workExperienceData from "../assets/workExperience.json";
 
 class WorkExperience {
     public company: string;
@@ -36,11 +37,49 @@ class WorkExperience {
         fullDescription += `## [${this.company}](${this.website})\n`;
         fullDescription += `Period: ${this.period}\n`;
         fullDescription += `---\n\n`;
-        fullDescription += this.models.length > 0 ? `<div class="model-viewer-container">${this.models.join('')}</div>\n\n` : '';
-        fullDescription += `${this.description}`;
+        fullDescription += this.models.length > 0 ? `<div class="model-viewer-container">${resolveMarkdownAssets(this.models.join(''))}</div>\n\n` : '';
+        fullDescription += `${resolveMarkdownAssets(this.description)}`;
 
         return fullDescription;
     }
+}
+
+function resolveMarkdownAssets(markdown: string) {
+
+  return markdown.replace(
+    /(!?\[[^\]]*\]\(\s*["']?)([^)"'\s]+)(["']?\))|(\b(?:src|href)\s*=\s*["'])([^"']+)(["'])/gi,
+    (
+      match,
+      mdPrefix,
+      mdSource,
+      mdSuffix,
+      htmlPrefix,
+      htmlSource,
+      htmlSuffix
+    ) => {
+      const source = mdSource ?? htmlSource
+
+
+      if (/^(https?:)?\/\//i.test(source)) {
+        return match
+      }
+
+      const basename = source.split('/').pop() ?? source
+
+      if (!/\.(png|jpe?g|webp|gif|svg|glb|gltf)$/i.test(basename)) {
+        return match
+      }
+
+      const resolved =
+        `${import.meta.env.BASE_URL}${source.replace(/^\/+/, '')}`
+
+      if (mdSource !== undefined) {
+        return `${mdPrefix}${resolved}${mdSuffix}`
+      }
+
+      return `${htmlPrefix}${resolved}${htmlSuffix}`
+    }
+  )
 }
 
 const WorkExperienceView = () => {
@@ -52,11 +91,9 @@ const WorkExperienceView = () => {
     const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
 
     useEffect(() => {
-        fetch("/workExperience.json").then(res => res.json()).then(workExperienceData => {
-            setWorkExperiences(workExperienceData.map((item: any) => {
-                return new WorkExperience(item.company, item.position, item.location, item.period, item.website, item.description, item.models);
-            }));
-        })
+        setWorkExperiences(workExperienceData.map((item: any) => {
+            return new WorkExperience(item.company, item.position, item.location, item.period, item.website, item.description, item.models);
+        }));
         setTabValue(0); // Reset tab value to 0 when workExperiences change
     }, []);
 

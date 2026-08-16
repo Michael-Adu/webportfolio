@@ -3,6 +3,7 @@ import React, { JSX, useRef, useEffect } from "react";
 import { useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTF, SkeletonUtils } from "three-stdlib";
+import baseMeshUrl from '../assets/models/BaseMesh-transformed.glb'
 
 type ActionName = 'AboutMe' | 'AboutMe Breathing' | 'Breathing' | 'Hello'
 
@@ -39,10 +40,10 @@ type GLTFResult = GLTF & {
   }
   animations: GLTFAction[]
 }
-
+useGLTF.preload(baseMeshUrl);
 const BaseMesh = (props: JSX.IntrinsicElements["group"]) => {
   const group = React.useRef<THREE.Group>()
-  const { scene, animations } = useGLTF('/models/BaseMesh-transformed.glb')
+  const { scene, animations } = useGLTF(baseMeshUrl)
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone) as GLTFResult
   const { actions } = useAnimations(animations, group)
@@ -115,7 +116,5 @@ const BaseMesh = (props: JSX.IntrinsicElements["group"]) => {
   )
 };
 
-
-useGLTF.preload("/models/BaseMesh-transformed.glb");
 
 export default BaseMesh;

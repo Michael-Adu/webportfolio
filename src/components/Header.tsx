@@ -1,4 +1,4 @@
-import Resume from "/michael-adu-embedded-software-engineer.pdf";
+import Resume from "../assets/michael-adu-embedded-software-engineer.pdf";
 
 import "./Header.scss";
 

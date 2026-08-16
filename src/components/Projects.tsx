@@ -21,18 +21,18 @@ class Project {
   }
 
   public getFilePath(): string {
-    return this.filePath;
+    return `${import.meta.env.BASE_URL}${this.filePath}`;
   }
 }
 
 const projects = [
   new Project(
     "Automated Sign Language Detection Device",
-    "projects/automatedSignLanguage/automatedSignLanguage.md"
+    `projects/automatedSignLanguage/automatedSignLanguage.md`
   ),
   new Project(
     "Arctis Sonar GUI",
-    "projects/arctisSonarGUI/arctisSonarGUI.md"
+    `projects/arctisSonarGUI/arctisSonarGUI.md`
   )
 ];
 

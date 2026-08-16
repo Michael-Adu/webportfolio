@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/myself/",
+  base: "/webportfolio/",
   plugins: [react()],
-  assetsInclude: ['**/*.md', '**/*.pdf']
+  assetsInclude: ['**/*.md', '**/*.pdf', '**/*.glb']
 })

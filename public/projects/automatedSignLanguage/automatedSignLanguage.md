@@ -17,9 +17,8 @@
 
 ---
 
-
-![image](/projects/automatedSignLanguage/automatedSignLanguage_4.png)
-![image](/projects/automatedSignLanguage/automatedSignLanguage_5.png)
+![image](/projects/automatedSignLanguage/images/automatedSignLanguage_4.png)
+![image](/projects/automatedSignLanguage/images/automatedSignLanguage_5.png)
 
 ## Introduction
 
@@ -34,15 +33,15 @@ detection with sensors only attached to the wrist and not the fingers was confir
 2. Collect wrist data for multiple gestures and signs (5 gestures).
 3. Train a model to recognize the signs and gestures.
 
-![image](/projects/automatedSignLanguage/automatedSignLanguage_1.png)
+![image](/projects/automatedSignLanguage/images/automatedSignLanguage_1.png)
 
 
 ## Results
 
-![image](/projects/automatedSignLanguage/automatedSignLanguage_2.png)
+![image](/projects/automatedSignLanguage/images/automatedSignLanguage_2.png)
 
 The system accurately predicted certain gestures better than others. The five gesture was more easily recognized as compared to the thumbs up or two gesture. While it is difficult to pinpoint the exact cause of this, it seems unlikely that the model required more data sets to increase the accuracy. With a reduced data set, the accuracy of the model stayed relatively stagnant. Making modifications to the training, validation and testing dividends made resulted in little change to the model, with some iterations degrading the accuracy of the model.
 
-![image](/projects/automatedSignLanguage/automatedSignLanguage_6.png)
+![image](/projects/automatedSignLanguage/images/automatedSignLanguage_6.png)
 
 The rotation of the hand, as well as the velocity, played a role in gesture detection, with both affecting the signal output by hindering specific signals and introducing noise. To ensure that the signals stay consistent, the hand was suspended in the same orientation for every reading and kept as still as possible. Another factor to take into consideration was the position of the wrist strap system, where positioning the wrist strap further down along the arm resulted in a loss in signal voltage. The tightness of the strap also factors into the amplitude of the signal from the piezoelectric transducers.

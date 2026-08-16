@@ -5,6 +5,46 @@ import ReactMarkdown from "react-markdown";
 import '@google/model-viewer';
 import rehypeRaw from 'rehype-raw';
 
+function resolveMarkdownAssets(markdown: string) {
+
+  return markdown.replace(
+    /(!?\[[^\]]*\]\(\s*["']?)([^)"'\s]+)(["']?\))|(\b(?:src|href)\s*=\s*["'])([^"']+)(["'])/gi,
+    (
+      match,
+      mdPrefix,
+      mdSource,
+      mdSuffix,
+      htmlPrefix,
+      htmlSource,
+      htmlSuffix
+    ) => {
+      const source = mdSource ?? htmlSource
+
+
+      if (/^(https?:)?\/\//i.test(source)) {
+        return match
+      }
+
+      const basename = source.split('/').pop() ?? source
+
+      if (!/\.(png|jpe?g|webp|gif|svg|glb|gltf)$/i.test(basename)) {
+        return match
+      }
+
+      const resolved =
+        `${import.meta.env.BASE_URL}${source.replace(/^\/+/, '')}`
+
+      if (mdSource !== undefined) {
+        return `${mdPrefix}${resolved}${mdSuffix}`
+      }
+
+      return `${htmlPrefix}${resolved}${htmlSuffix}`
+    }
+  )
+}
+
+
+
 // 2. Sub-component for rendering the Markdown
 const MarkdownRenderer = ({ filePath }: { filePath: string }) => {
   const [content, setContent] = useState<string>("");
@@ -18,7 +58,7 @@ const MarkdownRenderer = ({ filePath }: { filePath: string }) => {
     fetch(filePath)
       .then((res) => {
         if (!res.ok) throw new Error(`Could not find ${filePath}`);
-        return res.text();
+        return res.text().then(resolveMarkdownAssets);
       })
       .then((text) => {
         if (isMounted) {
