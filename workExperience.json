@@ -1,0 +1,33 @@
+[
+  {
+    "company": "Skyships Automotive Ltd.",
+    "position": "Software Engineer",
+    "location": "Braintree, United Kingdom",
+    "period": "January 2024 - Present",
+    "website": "https://www.skyships.co.uk/",
+    "models": [
+      "<div class=\"sketchfab-embed-wrapper\"> <iframe title=\"Czinger 21C\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src=\"https://sketchfab.com/models/ddfc5a1a7f8440e686d423875350fe2a/embed?autospin=1&autostart=1&camera=0&transparent=1&ui_theme=dark\"> </iframe> </div>",
+      "<model-viewer src=\"/models/robotarm.glb\" auto-rotate style=\"width: 100%;\"></model-viewer>"
+    ],
+    "description": "<ul><li><p>Designed and developed automotive infotainment and cockpit controllers for high end vehicles, integrating CAN messages with various telltales and warnings using QNX.</p></li><li><p>Created several tools to aid in software testing, including a suite of tools to exponentially reduce the duration <br>necessary for calculating and sending automotive CAN messages, performing various critical tests.</p></li><li><p>Developed 2D and 3D user interfaces using Kanzi and Lua.</p></li></ul><p></p>"
+  },
+  {
+    "company": "Premium Technologies Ltd.",
+    "position": "Embedded Engineer and Lead Web Developer",
+    "location": "Accra, Ghana",
+    "period": "February 2022 - August 2022",
+    "website": "https://ptechghana.com/",
+    "models": [],
+    "description": "<ul><li><p>Designed and developed a custom Smart Home System using ESP8022 to interface with already established home electrical systems to be implemented in over 3000 homes.</p></li><li><p>Created a Linux-based Smart Home Hub running on a Raspberry Pi and a companion phone application using Flutter to enable user control of household appliances and monitoring of CCTV cameras on a local network.</p></li></ul><p></p>"
+  },
+  {
+    "company": "Mingo Blox ",
+    "position": "Embedded Engineer and Web Developer",
+    "location": "Accra, Ghana",
+    "period": "June 2021 - February 2022",
+    "website": "",
+    "models": [],
+    "description": "<ul><li><p>Developed a desktop and mobile graphical-based code application for quick and easy programming of Arduino devices for novel engineering students and hobbyists using ReactJS and C/C++, which was marketed to an estimated 30 million users </p></li><li><p>Taught the fundamentals of robotics to 30+ young students at the primary level</p></li></ul><p></p>",
+    "roles": []
+  }
+]
