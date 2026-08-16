@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "Pixelon";
+  src: url("/fonts/Pixelon.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quantico";
+  src: url("/fonts/Quantico-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#root {
+  font-family: "Pixelon", sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px 0 0;
+  background-color: #101010;
+  color: white;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  grid-area: content;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* padding-right: 5%; */
+  // padding-top: 5%;
+  align-items: flex-end;
+}
+
+.myModelCanvas {
+  display: none;
+  min-width: 800px;
+}
+
+#tabContent {
+  width: 100%;
+  height: 100% !important;
+  overflow: auto;
+}
+
+.tabContent_data {
+  width: 100%;
+  height: 100% !important;
+}
+
+.tabAndContent {
+  display: grid;
+  grid-template-columns: 0.3fr auto;
+  height: 100%;
+  text-align: left;
+}
+
+.skillChips {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .skillRow {
+    border-bottom: 2px outset white;
+    border-radius: 5px;
+    padding: 5px;
+
+    h3 {
+      margin-bottom: 0px;
+      text-align: left;
+    }
+
+    .skillStack {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.model-viewer-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.markdown {
+  background: transparent;
+  p {
+    font-family: Quantico;
+    font-size: large;
+  }
+
+  code {
+    font-family: Pixelon;
+    font-size: medium;
+  }
+  h4 {
+    font-family: Pixelon;
+  }
+
+  .skillChips {
+    display: block;
+    width: fit-content;
+    border-bottom: 2px outset white;
+    // border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 2px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .skillChips {
+    width: 100%;
+
+    .skillRow {
+      width: 100%;
+      border-radius: 5px;
+      padding: 1rem;
+
+      h3 {
+        text-align: left;
+      }
+
+      .skillStack {
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .myModelCanvas {
+    display: block;
+    width: 100%;
+    height: 100vh !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+}
+
+@media screen and (max-width: 400px) {
+}
