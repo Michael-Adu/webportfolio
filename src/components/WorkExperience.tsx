@@ -1,5 +1,5 @@
 import "../App.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
     Box, Typography, Tab, Tabs, Divider
 } from "@mui/material";
@@ -46,55 +46,59 @@ class WorkExperience {
 
 function resolveMarkdownAssets(markdown: string) {
 
-  return markdown.replace(
-    /(!?\[[^\]]*\]\(\s*["']?)([^)"'\s]+)(["']?\))|(\b(?:src|href)\s*=\s*["'])([^"']+)(["'])/gi,
-    (
-      match,
-      mdPrefix,
-      mdSource,
-      mdSuffix,
-      htmlPrefix,
-      htmlSource,
-      htmlSuffix
-    ) => {
-      const source = mdSource ?? htmlSource
+    return markdown.replace(
+        /(!?\[[^\]]*\]\(\s*["']?)([^)"'\s]+)(["']?\))|(\b(?:src|href)\s*=\s*["'])([^"']+)(["'])/gi,
+        (
+            match,
+            mdPrefix,
+            mdSource,
+            mdSuffix,
+            htmlPrefix,
+            htmlSource,
+            htmlSuffix
+        ) => {
+            const source = mdSource ?? htmlSource
 
 
-      if (/^(https?:)?\/\//i.test(source)) {
-        return match
-      }
+            if (/^(https?:)?\/\//i.test(source)) {
+                return match
+            }
 
-      const basename = source.split('/').pop() ?? source
+            const basename = source.split('/').pop() ?? source
 
-      if (!/\.(png|jpe?g|webp|gif|svg|glb|gltf)$/i.test(basename)) {
-        return match
-      }
+            if (!/\.(png|jpe?g|webp|gif|svg|glb|gltf)$/i.test(basename)) {
+                return match
+            }
 
-      const resolved =
-        `${import.meta.env.BASE_URL}${source.replace(/^\/+/, '')}`
+            const resolved =
+                `${import.meta.env.BASE_URL}${source.replace(/^\/+/, '')}`
 
-      if (mdSource !== undefined) {
-        return `${mdPrefix}${resolved}${mdSuffix}`
-      }
+            if (mdSource !== undefined) {
+                return `${mdPrefix}${resolved}${mdSuffix}`
+            }
 
-      return `${htmlPrefix}${resolved}${htmlSuffix}`
-    }
-  )
+            return `${htmlPrefix}${resolved}${htmlSuffix}`
+        }
+    )
 }
 
 const WorkExperienceView = () => {
     const [tabValue, setTabValue] = useState(0);
+    const markdownRenderRef = useRef<HTMLDivElement>(null);
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue);
+        markdownRenderRef.current?.scrollTo({ top: 0, behavior: "instant", });
     }
-
     const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
+
 
     useEffect(() => {
         setWorkExperiences(workExperienceData.map((item: any) => {
             return new WorkExperience(item.company, item.position, item.location, item.period, item.website, item.description, item.models);
         }));
         setTabValue(0); // Reset tab value to 0 when workExperiences change
+
+
     }, []);
 
 
@@ -115,6 +119,7 @@ const WorkExperienceView = () => {
                 </Tabs>
             </Box>
             <Box
+                ref={markdownRenderRef}
                 className="markdown"
                 sx={{
                     p: 3,

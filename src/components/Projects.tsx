@@ -1,5 +1,5 @@
 import "../App.scss";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Box,
   Tabs,
@@ -38,9 +38,11 @@ const projects = [
 
 
 const ProjectsView = () => {
+
   const [tabValue, setTabValue] = useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
+
   };
 
   return (

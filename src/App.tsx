@@ -7,7 +7,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import SkillChips from "./components/Skills";
 import BaseMesh from "./components/BaseMesh";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomTabPanel from "./components/Tabs";
 import AboutMe from "./components/AboutMe";
 import ProjectsView from "./components/Projects";
@@ -18,6 +18,9 @@ function App() {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
+  useEffect(() => {
+    setTabValue(0);
+  }, []);
 
   return (
     <div className="main">

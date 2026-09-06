@@ -1,5 +1,5 @@
 import "../App.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Box, Typography, CircularProgress, Divider } from "@mui/material";
 import ReactMarkdown from "react-markdown";
 import '@google/model-viewer';
@@ -50,6 +50,9 @@ const MarkdownRenderer = ({ filePath }: { filePath: string }) => {
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const markdownRenderRef = useRef<HTMLDivElement>(null);
+
+
 
   useEffect(() => {
     let isMounted = true;
@@ -72,7 +75,7 @@ const MarkdownRenderer = ({ filePath }: { filePath: string }) => {
           setLoading(false);
         }
       });
-
+    markdownRenderRef.current?.scrollTo({ top: 0, behavior: "instant", });
     return () => {
       isMounted = false;
     };
@@ -96,6 +99,7 @@ const MarkdownRenderer = ({ filePath }: { filePath: string }) => {
 
   return (
     <Box
+      ref={markdownRenderRef}
       className="markdown"
       sx={{
         p: 3,
@@ -117,7 +121,7 @@ const MarkdownRenderer = ({ filePath }: { filePath: string }) => {
       }}
     >
       <ReactMarkdown
-      rehypePlugins={[rehypeRaw]}
+        rehypePlugins={[rehypeRaw]}
         components={{
           h1: ({ children }) => (
             <Typography variant="h4" gutterBottom>
