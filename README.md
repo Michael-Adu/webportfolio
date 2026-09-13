@@ -1,4 +1,5 @@
 npx gltfjsx ./public/models/BaseMesh.glb -t
+npx gltfjsx ./BaseMesh.glb --transform
 
 # React + TypeScript + Vite
 

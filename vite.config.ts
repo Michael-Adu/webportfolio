@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: "/michael-adu-embedded-software-engineer/",
   plugins: [react()],
-  assetsInclude: ['**/*.md', '**/*.pdf', '**/*.glb']
+  assetsInclude: ['**/*.md', '**/*.pdf', '**/*.glb', '**/*.mp4']
 })

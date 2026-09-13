@@ -33,7 +33,16 @@ const projects = [
   new Project(
     "Arctis Sonar GUI",
     `projects/arctisSonarGUI/arctisSonarGUI.md`
-  )
+  ),
+  new Project(
+    "Chess Clock",
+    "projects/chessClock/chessClock.md"
+  ),
+  new Project(
+    "Bluetooth Midi Device",
+    "projects/bluetoothMidiDevice/bluetoothMidiDevice.md"
+  ),
+  
 ];
 
 
