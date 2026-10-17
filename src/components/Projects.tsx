@@ -27,22 +27,26 @@ class Project {
 
 const projects = [
   new Project(
+    "Chess Clock",
+    "projects/chessClock/chessClock.md"
+  ),
+  new Project(
     "Automated Sign Language Detection Device",
     `projects/automatedSignLanguage/automatedSignLanguage.md`
   ),
   new Project(
-    "Arctis Sonar GUI",
-    `projects/arctisSonarGUI/arctisSonarGUI.md`
-  ),
-  new Project(
-    "Chess Clock",
-    "projects/chessClock/chessClock.md"
+    "Line Following Robot",
+    `projects/roboticsChallenge/roboticsChallenge.md`
   ),
   new Project(
     "Bluetooth Midi Device",
     "projects/bluetoothMidiDevice/bluetoothMidiDevice.md"
   ),
-  
+  new Project(
+    "Arctis Sonar GUI",
+    `projects/arctisSonarGUI/arctisSonarGUI.md`
+  ),
+
 ];
 
 

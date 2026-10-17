@@ -1,7 +1,6 @@
-
 ![image](/projects/chessClock/images/render6.png)
 
-# **chess clock**
+# **Chess Clock**
 
 **Project Date**: 2023
 
@@ -15,15 +14,15 @@
 <a className="skillChips"> Git </a>
 </div>
 
-<a href="https://github.com/Michael-Adu/Chess-Clock" target="_blank">Github Repo</a>
+<a href="https://github.com/Michael-Adu/Chess-Clock" target="_blank">GitHub Repository</a>
 
 ---
 
-In the world of professional chess, each player is assigned a set amount of time to make their move for a match. This time can be as little as 3 minutes to sev eral hours. When a player has made their move, their time stops decreasing, and the opponent's time starts to decrease as well. The change is done by the player who finishes their turn. 
+This project is a physical chess clock paired with an Android application for configuring and viewing a game. The embedded prototype uses a PIC18F4520 microcontroller, five buttons, an HC-06 Bluetooth module and a 16×2 LCD. The hardware manages each player's remaining time, while the mobile app provides access to timing options and displays the current clock values over Bluetooth.
 
-Most digital chess clocks have at least six buttons, 4 for setting and pausing/playing the match and two for the players to interact with during the match. The two buttons that the players use switch the current player, decreasing the time for the opponent of the user. These clocks can be customized to add or reduce the time of each player before the beginning of the match.
+## Hardware and controls
 
-A prototype was created using the PIC18F4520, five buttons, an HC-06 Bluetooth module, and a 16x2 LCD. The PIC18F4520 is equipped with an internal timer interrupt, multiple GPIO ports and USART ports that can be used for both the Bluetooth module and serial communication with a computer. The LCD would display the current modes and times of the chess clock. The device, on startup, was programmed to initialize the timer as an interrupt, as well as a dedicated button to be used to switch between players. The LCD and USART are initialized as well, and the modes are set. After initialization, the menu is shown. A mobile application was created for an android phone to show the timing options and the current times of the players. The clock behaves as programmed, with the mobile application interfacing with the clock via Bluetooth.
+The LCD displays the selected timing mode, player times and current state of the match. On startup, the microcontroller initialises its timer interrupt, buttons, display and serial communication before presenting the menu.
 
 <div style="display: flex;">
 
@@ -35,8 +34,18 @@ A prototype was created using the PIC18F4520, five buttons, an HC-06 Bluetooth m
 
 </div>
 
-One button is used to cycle through the preset modes, which were programmed as a struct/class in the microprocessor. Two buttons were used to increase and decrease the time of the current mode, creating a custom mode which is displayed on the LCD and transmitted via serial communication. The last menu button is used to start the match. After starting the match, the interrupt flag for the timer is constantly checked to reduce the time of the current player. This flag is called every 100th of a second to ensure that the time deducted from the player is precise and does not lag. At the beginning of each match, the player is white. After a full second, the display is updated, as well as the serial communication devices, with the current time for White and Black. When the button interrupt is triggered, the current player is switched, with an LED indicating whose turn it is to play. If the LED is on, the current player is Black. If it is off, the current player is White.
+One button cycles through preset timing modes. Two others adjust the time to create a custom mode, which is shown on the LCD and sent over serial communication. A final menu button starts the match. The Flutter app provides a companion view of the timing options and each player's current time, communicating with the clock through Bluetooth.
 
-The match can be paused and played at any point in the match by pressing the pause button. At this point, the timer no longer decreases the time of any of the players, and a message is shown that the match has been paused. The match can continue by pressing the same button. The match can also be stopped by changing the mode of the chess clock by pressing the change mode button. When any player has less than 5 seconds left, the buzzer beeps once per second to let the players know that there is not much time left to make a move. After a player's time runs out, a victory screen is displayed with the winner's colour.
+## Timing and gameplay
+
+The PIC18F4520's timer interrupt provides the regular timing reference for the match. The program checks the timer flag at hundredth-of-a-second intervals to keep time deductions responsive. The displayed times are refreshed once per second and sent to connected serial devices.
+
+White starts each game. When a player presses the turn button, control switches to the other player, and an LED indicates whose turn it is: illuminated for Black and off for White. The match can be paused and resumed with the pause button; changing the timing mode stops the current match and returns the clock to mode selection.
+
+When a player's remaining time falls below five seconds, a buzzer sounds once per second as a warning. When their time reaches zero, the display shows a victory screen indicating the winning colour.
 
 ![image](/projects/chessClock/images/render7.png)
+
+## Project focus
+
+The build brought together embedded timing, button handling, an LCD menu, serial communication and a Bluetooth-connected mobile interface. It was a practical exercise in coordinating hardware peripherals and keeping the physical clock and companion app in sync during a game.

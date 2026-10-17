@@ -43,7 +43,7 @@
 
 .myModelCanvas {
   display: none;
-  min-width: 800px;
+  min-width: 400px;
 }
 
 #tabContent {
@@ -86,7 +86,7 @@
   }
 }
 
-.model-viewer-container{
+.model-viewer-container {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -95,6 +95,9 @@
 
 .markdown {
   background: transparent;
+
+  background-color: transparent;
+
   p {
     font-family: Quantico;
     font-size: large;
@@ -104,6 +107,7 @@
     font-family: Pixelon;
     font-size: medium;
   }
+
   h4 {
     font-family: Pixelon;
   }
@@ -118,6 +122,15 @@
     padding: 2px;
     text-align: center;
   }
+
+
+}
+
+pre {
+  background-color: transparent !important;
+  font-family: Pixelon;
+  font-size: medium;
+  font-style: italic;
 }
 
 @media screen and (max-width: 1080px) {
@@ -140,7 +153,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1000px) {
   .myModelCanvas {
     display: block;
     width: 100%;
@@ -148,8 +161,6 @@
   }
 }
 
-@media screen and (max-width: 500px) {
-}
+@media screen and (max-width: 500px) {}
 
-@media screen and (max-width: 400px) {
-}
+@media screen and (max-width: 400px) {}
